@@ -19,7 +19,9 @@ class AdminLogin extends Component {
                                 <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                             </div>
 
-                            <button type="submit" className="btn btn-success">Submit</button>
+                            <br/>
+
+                            <button type="submit" className="btn btn-success" style={{ width:"100%" }}>Submit</button>
 
                         </form>
                     </div>
