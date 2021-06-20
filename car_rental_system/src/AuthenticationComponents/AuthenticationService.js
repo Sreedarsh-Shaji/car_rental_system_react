@@ -1,9 +1,9 @@
 class AuthenticationService{
 
-    registerSuccessfulAdminLogin(username)//Registers admin login
+    registerSuccessfulAdminLogin(admin)//Registers admin login
     {
         console.log("Register successful login");
-        sessionStorage.setItem('authenticatedAdmin',username);
+        sessionStorage.setItem('authenticatedAdmin',admin);
     }
 
     isAdminLoggedIn()//Return true if admin is logged in

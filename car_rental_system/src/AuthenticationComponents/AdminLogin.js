@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthenticationDataService from "./AuthenticationDataService"
+import AuthenticationService from './AuthenticationService';
 
 class AdminLogin extends Component {
 
@@ -18,8 +19,21 @@ class AdminLogin extends Component {
 
     onSubmit(values) {
         console.log(this.state);
-        AuthenticationDataService.adminLogin(this.state.username, this.state.password).
-            then((response) => { console.log(response) })
+        AuthenticationDataService.adminLogin(this.state.username, this.state.password)
+        .then((response) => { 
+                AuthenticationService.registerSuccessfulAdminLogin(response.data);  
+                if(response.data.adminEmail == null)
+                {
+                    this.setState({error:"Invalid credentials"})
+                } 
+                else{  
+                this.setState({error:"Valid credentials"})
+                }
+                console.log(response.data) })
+        .catch(  
+        err=>{
+            this.setState({error:"Invalid credentials"})
+        } )
     }
 
 
@@ -40,7 +54,7 @@ class AdminLogin extends Component {
                     <div className="col-md-6">
 
                         {this.state.error && <div class="alert alert-danger" role="alert">
-                            Invalid credentials
+                            {this.state.error}
                         </div>}
 
                     </div>
