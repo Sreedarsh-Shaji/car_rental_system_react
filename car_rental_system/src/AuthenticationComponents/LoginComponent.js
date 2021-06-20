@@ -49,19 +49,19 @@ class LoginComponent extends Component {
                         </div>
                         <div className="col-md-5">
 
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary active">
-                                    <input type="radio" name="options" id="option1" autocomplete="off" style={{ width:"100%" }} 
+                            <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label className="btn btn-primary active">
+                                    <input type="radio" name="options" id="option1" style={{ width:"100%" }} 
                                     onClick={() => this.userSelect("Admin")}/> 
                                     Admin
                                 </label>
-                                <label class="btn btn-primary" style={{ width:"110px" }}>
-                                    <input type="radio" name="options" id="option2" autocomplete="off"
+                                <label className="btn btn-primary" style={{ width:"110px" }}>
+                                    <input type="radio" name="options" id="option2"
                                     onClick={() => this.userSelect("Agency")}/> 
                                     Agency
                                 </label>
-                                <label class="btn btn-primary" style={{ width:"65px" }}>
-                                    <input type="radio" name="options" id="option3" autocomplete="off" style={{ width:"100%" }} 
+                                <label className="btn btn-primary" style={{ width:"65px" }}>
+                                    <input type="radio" name="options" id="option3" style={{ width:"100%" }} 
                                     onClick={() => this.userSelect("User")}/> 
                                     User
                                 </label>
