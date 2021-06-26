@@ -13,6 +13,12 @@ class AuthenticationDataService{
         return users
     }
 
+    getAllAgencies()
+    {
+        let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllAgencies`)
+        return users
+    }
+
 }
 
 export default new AuthenticationDataService();
