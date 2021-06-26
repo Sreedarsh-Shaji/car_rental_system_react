@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthenticationService from '../../AuthenticationComponents/AuthenticationService';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     render() {
@@ -8,15 +9,15 @@ class Header extends Component {
     
         return(
             <header>
-               <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+               <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                    <div><a href="#" className="navbar-brand">Dashboard</a></div>
-                   <ul class="navbar-nav">
-                       {isAdminLogin && <li><Link to="/welcome/in28minutes"  class="nav-link">Home</Link></li>}
-                       {isAdminLogin && <li><Link to="/todos"  class="nav-link">Todo</Link></li>}
+                   <ul className="navbar-nav">
+                       {isAdminLogin && <li><Link to="/welcome/in28minutes"  className="nav-link">Home</Link></li>}
+                       {isAdminLogin && <li><Link to="/todos"  className="nav-link">Todo</Link></li>}
                    </ul>
-                   <ul  class="navbar-nav navbar-collapse justify-content-end">
-                        {!isAdminLogin && <li><Link to="/login" class="nav-link">Login</Link></li>}
-                        {isAdminLogin &&  <li><Link to="/logout" class="nav-link"  onClick={AuthenticationService.logout}>Logout</Link></li>}
+                   <ul  className="navbar-nav navbar-collapse justify-content-end">
+                        {!isAdminLogin && <li><Link to="/login" className="nav-link">Login</Link></li>}
+                        {isAdminLogin &&  <li><Link to="/logout" className="nav-link"  onClick={AuthenticationService.logout}>Logout</Link></li>}
                    </ul>
                </nav>
             </header> 

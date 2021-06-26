@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import AuthenticationDataService from "./AuthenticationDataService"
 import AuthenticationService from './AuthenticationService';
+import { withRouter } from 'react-router';
 
 class AdminLogin extends Component {
+
+    
 
     constructor(props) {
         super(props)
@@ -18,7 +21,9 @@ class AdminLogin extends Component {
     }
 
     onSubmit(values) {
-        console.log(this.state);
+
+        const { history } = this.props;
+
         AuthenticationDataService.adminLogin(this.state.username, this.state.password)
         .then((response) => { 
                 AuthenticationService.registerSuccessfulAdminLogin(response.data);  
@@ -28,11 +33,12 @@ class AdminLogin extends Component {
                 } 
                 else{  
                     this.setState({error:"Valid credentials"})
-                    //this.props.history.push(`/Admin/`);
+                    history.push('/Admin/Home');
                 }
                 console.log(response.data) })
         .catch(  
         err=>{
+            console.log(err)
             this.setState({error:"Invalid credentials"})
         } )
     }
@@ -54,7 +60,7 @@ class AdminLogin extends Component {
                 <div className="row">
                     <div className="col-md-6">
 
-                        {this.state.error && <div class="alert alert-danger" role="alert">
+                        {this.state.error && <div className="alert alert-danger" role="alert">
                             {this.state.error}
                         </div>}
 
@@ -91,4 +97,4 @@ class AdminLogin extends Component {
 
 
 
-export default AdminLogin;
+export default withRouter(AdminLogin);
