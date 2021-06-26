@@ -1,12 +1,12 @@
 import './App.css';
 import './bootstrap.css';
 
-import LoginComponent from './AuthenticationComponents/LoginComponent';
+import MainRoutes from './AuthenticationComponents/MainRoutes';
 
 function App() {
   return (
     <div>
-      <LoginComponent/>
+      <MainRoutes/>
     </div>
   );
 }

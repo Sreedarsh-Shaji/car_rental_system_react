@@ -27,7 +27,8 @@ class AdminLogin extends Component {
                     this.setState({error:"Invalid credentials"})
                 } 
                 else{  
-                this.setState({error:"Valid credentials"})
+                    this.setState({error:"Valid credentials"})
+                    //this.props.history.push(`/Admin/`);
                 }
                 console.log(response.data) })
         .catch(  
