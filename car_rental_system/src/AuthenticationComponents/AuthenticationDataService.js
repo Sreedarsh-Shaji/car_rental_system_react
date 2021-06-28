@@ -18,6 +18,18 @@ class AuthenticationDataService{
         let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllAgencies`)
         return users
     }
+    getAllOfficers(){
+        let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllOffices`)
+        return users
+    }
+    getAllTrips(){
+        let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllTrips`)
+        return users
+    }
+    getAllVehicles(){
+        let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllVehicles`)
+        return users
+    }
 
 }
 
