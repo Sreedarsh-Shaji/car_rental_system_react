@@ -10,7 +10,9 @@ class AgencyOfficesPage extends Component {
         super(props)
 
         this.state = {
-            isOpen: false
+            isOpen: false,
+            modelAction: "Add",
+            data: null
         };
 
         this.openModal = this.openModal.bind(this);
@@ -40,12 +42,12 @@ class AgencyOfficesPage extends Component {
                         <div className="col-8"></div>
                         <div className="col-2">
                             <Button variant="primary" onClick={this.openModal}>
-                            +
+                                +
                             </Button>
                         </div>
                     </div>
 
-                    <br/>
+                    <br />
 
                     <div className="row">
                         <div className="col-2"></div>
@@ -89,12 +91,46 @@ class AgencyOfficesPage extends Component {
 
                     <Modal show={this.state.isOpen}>
                         <Modal.Header closeButton onClick={this.closeModal}>
-                            <Modal.Title>Modal heading</Modal.Title>
+                            <Modal.Title>{this.state.modelAction == "Add" ? "Add an office" : "Update the office"}</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={this.closeModal}>Close</Button>
-                        </Modal.Footer>
+                        <Modal.Body>
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Location</label>
+                                    <input type="text" class="form-control" id="location" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Coordinates</label>
+                                    <input type="number" class="form-control" id="location" placeholder="latitude" />
+                                    <input type="number" class="form-control" id="location" placeholder="longitude" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Address</label>
+                                    <input type="text" class="form-control" id="location" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Emailid</label>
+                                    <input type="text" class="form-control" id="location" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone No.</label>
+                                    <input type="text" class="form-control" id="location" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Alternate Phone No.</label>
+                                    <input type="text" class="form-control" id="location" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+
+                        </Modal.Body>
+                        {
+                        
+                        /*<Modal.Footer>
+                            <Button variant="secondary" onClick={this.closeModal} >Close</Button>
+                        </Modal.Footer>*/
+                        }
                     </Modal>
 
                 </div>
