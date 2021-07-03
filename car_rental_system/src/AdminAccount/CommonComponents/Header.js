@@ -11,6 +11,7 @@ class Header extends Component {
             <header>
                <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                    <div><a href="#" className="navbar-brand">Dashboard</a></div>
+                   <div><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"/></div>
                    <ul className="navbar-nav">
                        {isAdminLogin && <li><Link to="/welcome/in28minutes"  className="nav-link">Home</Link></li>}
                        {isAdminLogin && <li><Link to="/todos"  className="nav-link">Todo</Link></li>}

@@ -27,11 +27,9 @@ class AllVehicle extends Component {
             } )
     }
 
-
     render() {
         return (
-            <>
-            
+            <>        
             <Header/>
                 <div>
                 <h1>List todos</h1>
@@ -47,6 +45,7 @@ class AllVehicle extends Component {
                                 <th>Kilometer Run</th>
                                 <th>Hourly Rate</th>
                                 <th>Status</th>
+                                <th>Last  login</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +53,7 @@ class AllVehicle extends Component {
                                 this.state.users.map(
                                     vehicle =>
                                         <tr key={vehicle.vehicleId}>
+                                            <td>{vehicle.vehicleId}</td>
                                             <td>{vehicle.registerNumber}</td>
                                             <td>{vehicle.engineNumber}</td>
                                             <td>{vehicle.manufacturer}</td>
@@ -61,7 +61,7 @@ class AllVehicle extends Component {
                                             <td>{vehicle.kmsOperated}</td>
                                             <td>{vehicle.hourlyRate}</td>
                                             <td>{vehicle.status}</td>
-                                            <td>{moment(vehicle.creationDateTime).format('DD-MM-YYYY hh:mm:ss')}</td>
+                                            <td>{moment(vehicle.lastLogin).format('DD-MM-YYYY hh:mm:ss')}</td>
                                              {/*<td>{user.done.toString()}</td>*/}
                                             <td><button className="btn btn-warning">Delete</button></td>
                                             <td><button className="btn btn-success">Update</button></td>

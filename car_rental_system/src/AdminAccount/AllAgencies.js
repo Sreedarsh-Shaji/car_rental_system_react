@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from './CommonComponents/Header';
 import Footer from './CommonComponents/Footer';
 import AuthenticationDataService from '../AuthenticationComponents/AuthenticationDataService';
+import tableHandler from './TableHandler/TableHandler';
 
 import moment from 'moment';
 
@@ -33,9 +34,10 @@ class AllAgencies extends Component {
             <>
             
             <Header/>
-                <div>
-                <h1>List todos</h1>
+                <div>        
                 <div className="container">
+                <h1>List Agency</h1><br/>
+                
                     <table class="table">
                         <thead>
                             <tr>
