@@ -9,6 +9,9 @@ import AllTrips from '../AdminAccount/AllTrips';
 import AllOfficers from '../AdminAccount/AllOfficers';
 import AllVehicle from '../AdminAccount/AllVehicle';
 
+import AgencyHomePage from '../AgencyAccount/AgencyHomePage.js'
+import AgencyOfficesPage from '../AgencyAccount/AgencyOfficesPage.js'
+
 class MainRoutes extends Component {
     render() {
         return (
@@ -25,6 +28,11 @@ class MainRoutes extends Component {
                         <Route path="/Admin/All-trips" component={AllTrips}/>
                         <Route path="/Admin/All-officers" component={AllOfficers}/>
                         <Route path="/Admin/All-Vehicles" component={AllVehicle}/>
+
+                        { /* Agency components */ }
+                        <Route path="/Agency/Home" component={AgencyHomePage}/>
+                        <Route path="/Agency/Offices" component={AgencyOfficesPage}/>
+
                     </Switch>
                 </Router>
             </div>

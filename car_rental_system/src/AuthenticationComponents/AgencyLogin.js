@@ -34,7 +34,7 @@ class AgencyLogin extends Component {
                 } 
                 else{  
                     this.setState({error:"Valid credentials"})
-                    history.push('/Admin/Home');
+                    history.push('/Agency/Home');
                 }
                 console.log(response.data) })
         .catch(  
