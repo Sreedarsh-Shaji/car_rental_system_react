@@ -6,9 +6,22 @@ class AuthenticationService{
         sessionStorage.setItem('authenticatedAdmin',admin);
     }
 
+    
+    registerSuccessfulAgencyLogin(agency)//Registers agency login
+    {
+        console.log("Register successful agency login");
+        sessionStorage.setItem('authenticatedAgency',agency);
+    }
+
     isAdminLoggedIn()//Return true if admin is logged in
     { 
         let user = sessionStorage.getItem('authenticatedAdmin');
+        return user === null ? false : true ;
+    }
+
+    isAgencyLoggedIn()//Return true if agency is logged in
+    { 
+        let user = sessionStorage.getItem('authenticatedAgency');
         return user === null ? false : true ;
     }
 
@@ -16,6 +29,11 @@ class AuthenticationService{
     adminLogout()//Removes admin entity
     {
         sessionStorage.removeItem('authenticatedAdmin');
+    }
+
+    agencyLogout()//Removes agency entity
+    {
+        sessionStorage.removeItem('authenticatedAgency');
     }
 
     logout()
