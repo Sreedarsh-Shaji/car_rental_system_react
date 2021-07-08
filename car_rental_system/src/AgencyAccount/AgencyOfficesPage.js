@@ -85,8 +85,6 @@ class AgencyOfficesPage extends Component {
                         </div>
                         <div className="col-2"></div>
                     </div>
-
-
                     <Modal show={this.state.isOpen}>
                         <Modal.Header closeButton onClick={this.closeModal}>
                             <Modal.Title>Modal heading</Modal.Title>
@@ -96,10 +94,7 @@ class AgencyOfficesPage extends Component {
                             <Button variant="secondary" onClick={this.closeModal}>Close</Button>
                         </Modal.Footer>
                     </Modal>
-
                 </div>
-
-
                 <Footer />
             </div>
         );

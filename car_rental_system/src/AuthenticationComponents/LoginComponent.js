@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import AdminLogin from './AdminLogin';
 import UserLogin from './UserLogin';
 import AgencyLogin from './AgencyLogin';
-import HeaderComponent from './HeaderComponent'
 import FooterComponent from './FooterComponent';
+import Header from '../LandingPage/Header';
 
 class LoginComponent extends Component {
 
@@ -21,7 +21,7 @@ class LoginComponent extends Component {
     render() {
         return (
             <>
-                <HeaderComponent />
+                <Header/>
 
                 <div className="container">
                     <div className="row">

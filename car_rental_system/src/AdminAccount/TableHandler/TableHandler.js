@@ -19,4 +19,4 @@ function tableHandler() {
       }       
     }
   }
-  export default tableHandler;
+export default tableHandler;

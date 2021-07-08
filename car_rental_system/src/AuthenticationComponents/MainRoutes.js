@@ -11,15 +11,23 @@ import AllVehicle from '../AdminAccount/AllVehicle';
 
 import AgencyHomePage from '../AgencyAccount/AgencyHomePage.js'
 import AgencyOfficesPage from '../AgencyAccount/AgencyOfficesPage.js'
+import Mainpage from '../LandingPage/Mainpage';
+import AboutComponent from './AboutComponent';
+import SignUpComponent from './SignUpComponent';
+
 
 class MainRoutes extends Component {
     render() {
         return (
             <div>
+                
                 <Router>
                     <Switch>
                         
                         <Route path="/Login" exact component={LoginComponent}/>
+                        <Route path="/home" exact component={Mainpage}/>
+                        <Route path="/about" exact component={AboutComponent}/>
+                        <Route path="/sign" exact component={SignUpComponent}/>
 
                         { /* Admin components */ }
                         <Route path="/Admin/Home" component={HomePage}/>
@@ -39,6 +47,5 @@ class MainRoutes extends Component {
         );
     }
 }
-
 
 export default MainRoutes;

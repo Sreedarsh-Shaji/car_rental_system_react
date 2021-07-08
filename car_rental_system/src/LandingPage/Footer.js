@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 
-class Header extends Component{
+class Footer extends Component{
 
     render(){
         return(
-            <header>
-               <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                    <div><span className="navbar-brand">Car Rental System</span></div>
-                    <ul className="navbar-nav">  
-                    </ul>
-                    <ul  className="navbar-nav navbar-collapse justify-content-end">
-                    </ul>
-               </nav>
-            </header>        
+            <footer className="footer">
+            <span className="text-muted">All rights reserved</span>
+            </footer>        
         );
     }
 
 }
-export default Header;
+export default Footer;
