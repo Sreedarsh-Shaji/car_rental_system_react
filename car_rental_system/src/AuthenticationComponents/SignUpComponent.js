@@ -10,9 +10,9 @@ class SignUpComponent extends Component{
                     <div className="container">
                             <div className="row">
                                 <div className="col-md-12">
-                                    <br />
+                                    <br/>
                                     <h1 style={{ textAlign: "center" ,color: "#003300"}}> Sign Up </h1>
-                                    <br />
+                                    <br/>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,6 @@ class SignUpComponent extends Component{
                                 </div>
                             </div>
                         </div>        
-
 
                 <FooterComponent/>
             </>

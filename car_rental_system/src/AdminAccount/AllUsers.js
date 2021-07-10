@@ -62,8 +62,9 @@ class AllUsers extends Component {
             
             <Header/>
                 <div>
-                <h1>List todos</h1>
+               
                 <div className="container">
+                <h1>Users</h1>
                     <table class="table">
                         <thead>
                             <tr>

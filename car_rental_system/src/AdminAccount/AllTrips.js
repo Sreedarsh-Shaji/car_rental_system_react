@@ -9,7 +9,29 @@ class AllTrips extends Component {
         return (
             <>  
             <Header/>        
-                this is the trip show
+            <div>
+                
+                <div className="container">
+                <h1>Vehicle</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Trip Id</th>
+                                <th>Pickup Office</th>
+                                <th>Rating</th>
+                                <th>Return Office</th>
+                                <th>Review</th>
+                                <th>Start Date</th>
+                                <th>Agency</th>
+                                <th>Vehicle</th>
+                                
+                            </tr>
+                        </thead>
+                        
+                        
+                        </table>
+                </div>
+                </div>
             <Footer/>
             </>
         );

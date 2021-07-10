@@ -32,8 +32,9 @@ class AllVehicle extends Component {
             <>        
             <Header/>
                 <div>
-                <h1>List todos</h1>
+                
                 <div className="container">
+                <h1>Vehicle</h1>
                     <table class="table">
                         <thead>
                             <tr>

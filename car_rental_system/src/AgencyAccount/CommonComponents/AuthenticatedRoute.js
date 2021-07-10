@@ -4,7 +4,7 @@ import AuthenticationService from './AuthenticationService'
 
 class AuthenticatedRoute extends Component{
     render(){
-        if(AuthenticationService.isAdminLoggedIn)
+        if(AuthenticationService.isAgencyLoggedIn)
         {
             return <Route {...this.props}/>//This is the js spread operator
         }

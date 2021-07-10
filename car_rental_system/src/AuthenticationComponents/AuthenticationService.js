@@ -12,6 +12,11 @@ class AuthenticationService{
         console.log("Register successful agency login");
         sessionStorage.setItem('authenticatedAgency',agency);
     }
+    registerSuccessfulUserLogin(user)//Registers User login
+    {
+        console.log("Register successful user login");
+        sessionStorage.setItem('authenticatedUser',user);
+    }
 
     isAdminLoggedIn()//Return true if admin is logged in
     { 
@@ -23,6 +28,10 @@ class AuthenticationService{
     { 
         let user = sessionStorage.getItem('authenticatedAgency');
         return user === null ? false : true ;
+    }
+    isUserLoggedIn(){
+        let user=sessionStorage.getItem('authenticatedUser')
+        return user=== null? false :true;
     }
 
 

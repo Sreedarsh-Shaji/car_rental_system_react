@@ -14,6 +14,7 @@ import AgencyOfficesPage from '../AgencyAccount/AgencyOfficesPage.js'
 import Mainpage from '../LandingPage/Mainpage';
 import AboutComponent from './AboutComponent';
 import SignUpComponent from './SignUpComponent';
+import UserHome from '../UserAccount/UserHome';
 
 
 class MainRoutes extends Component {
@@ -40,6 +41,11 @@ class MainRoutes extends Component {
                         { /* Agency components */ }
                         <Route path="/Agency/Home" component={AgencyHomePage}/>
                         <Route path="/Agency/Offices" component={AgencyOfficesPage}/>
+
+
+                        {/* User componets*/}
+
+                        <Route path="/User/home" component={UserHome}/>
 
                     </Switch>
                 </Router>

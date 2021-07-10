@@ -11,7 +11,10 @@ class AuthenticationDataService{
         let ret = axios.get(`http://localhost:8085/api/v1/agency/agencyLogin/${username}/${password}`);
         return ret;
     } 
-   
+    userLogin(username,password){
+        let ret = axios.get(`http://localhost:8085/api/v1/user/userLogin/${username}/${password}`);
+        return ret;
+    } 
 
     getAllusers()
     {

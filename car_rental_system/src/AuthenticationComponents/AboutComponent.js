@@ -36,11 +36,14 @@ class AboutComponent extends Component{
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-md-12">  
+                                            <br/>  
+                                            <br/>
                                             <hr/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="section-title">
+                                    
                                     <h2 style={{ color: "#0000ff"}}>What We Do</h2>
                                     <p>Small businesses are always strapped for cash, this is the reason we are asking you to Understand Real Reason to Invest in Technology for your business. Take start and make an investment to Progress–anytime, anywhere, with a sense of security & the need for speed.</p>
                                 </div>
