@@ -33,23 +33,13 @@ class ViewVehicle extends Component {
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
 
-    componentDidMount() {
-        console.log("Agency component did mount");
-    }
     componentDidMount() { 
+        console.log("Agency component did mount");
         AuthenticationDataService.getAllVehicles().
         then( response => { 
             this.setState ({ users : response.data }) 
             console.log( response.data )
             } )
-
-            AuthenticationDataService.getAllOfficers().
-            then( response => { 
-                this.setState ({ office : response.data }) 
-                console.log( response.data )
-                } )
-
-
     }
 
     onSubmit(values) {
@@ -67,7 +57,7 @@ class ViewVehicle extends Component {
                 else{  
                     alert("Added data successfully");
                     this.setState({message:"Valid credentials"})
-                    //history.push('/Agency/Home');
+                    history.push('/Agency/vehicles');
                 }
                 console.log(response.data) })
         .catch(  
@@ -93,6 +83,7 @@ class ViewVehicle extends Component {
                         </div>
                     </div>
                     <div className="row">  
+                    <div className="col-1"></div>
                         <div className="col-2">
                             <Button variant="primary"  onClick={this.openModal}>
                                ADD Vechicle 
@@ -103,8 +94,8 @@ class ViewVehicle extends Component {
                     <br />
 
                     <div className="row">
-                        
-                        <div className="col-12">
+                        <div className="col-1"></div>
+                        <div className="col-11">
 
                             <table className="table">
                                 <thead className="thead-dark">

@@ -52,7 +52,7 @@ class AuthenticationDataService{
         return ret;
     } 
     userLogin(username,password){
-        let ret = axios.get(`http://localhost:8085/api/v1/user/userLogin/${username}/${password}`);
+        let ret = axios.get(`http://localhost:8085/api/v1/user/userlogin/${username}/${password}`);
         return ret;
     } 
 

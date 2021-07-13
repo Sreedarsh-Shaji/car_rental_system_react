@@ -18,7 +18,9 @@ class AgencyOfficesPage extends Component {
             address : '',
             email : '',
             phone : '',
-            alphone : ''
+            alphone : '',
+            users: [],
+            message : null
         };
 
         this.onSubmit =this.onSubmit.bind(this);
@@ -32,6 +34,11 @@ class AgencyOfficesPage extends Component {
 
     componentDidMount() {
         console.log("Agency component did mount");
+        AuthenticationDataService.getAllOfficers().
+        then( response => { 
+            this.setState ({ users : response.data }) 
+            console.log( response.data )
+            } )
     }
 
     onSubmit(values) {
@@ -93,11 +100,10 @@ class AgencyOfficesPage extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-2"></div>
-                        <div className="col-8"></div>
+                        <div className="col-1"></div>
                         <div className="col-2">
                             <Button variant="primary" onClick={this.openModal}>
-                                +
+                                ADD Office
                             </Button>
                         </div>
                     </div>
@@ -105,37 +111,37 @@ class AgencyOfficesPage extends Component {
                     <br />
 
                     <div className="row">
-                        <div className="col-2"></div>
-                        <div className="col-8">
+                    <div className="col-1"></div>
+                        <div className="col-11">
 
                             <table className="table">
                                 <thead className="thead-dark">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th>ID</th>
+                                        <th>email ID</th>
+                                        <th>Office Address</th>
+                                        <th>Office Contact Number</th>
+                                        <th>Alternate Number</th>
+                                       
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                      
+                                    {
+                                    this.state.users.map(
+                                        officers =>
+                                            <tr key={officers.officeId}>
+                                                <td>{officers.officeId}</td>     
+                                                <td>{officers.emailId}</td>
+                                                <td>{officers.officeAddress}</td>
+                                                <td>{officers.officePhone}</td>
+                                                <td>{officers.officeAlternatePhone}</td>
+                                                <td><button className="btn btn-warning">Delete</button></td>
+                                                  
+                                            </tr>
+                                        )
+                                    }
                                 </tbody>
                             </table>
 
@@ -144,7 +150,7 @@ class AgencyOfficesPage extends Component {
                     </div>
                     <Modal show={this.state.isOpen}>
                         <Modal.Header closeButton onClick={this.closeModal}>
-                            <Modal.Title>{this.state.modelAction == "Add" ? "Add an office" : "Update the office"}</Modal.Title>
+                            <Modal.Title>{this.state.modelAction == "Add" ? "Update the office" : "Add an office" }</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
 
@@ -185,8 +191,7 @@ class AgencyOfficesPage extends Component {
                         </Modal.Footer>*/
                         }
                     </Modal>
-                </div>
-                <Footer />
+                </div>  
             </div>
         );
     }

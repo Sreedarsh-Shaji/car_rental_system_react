@@ -17,6 +17,8 @@ import SignUpComponent from './SignUpComponent';
 import UserHome from '../UserAccount/UserHome';
 import ViewTrips from '../AgencyAccount/ViewTrips';
 import ViewVehicle from '../AgencyAccount/ViewVehicle';
+import ViewOffice from '../UserAccount/ViewOffice';
+import ViewUserTrips from '../UserAccount/ViewUserTrips';
 
 
 class MainRoutes extends Component {
@@ -49,7 +51,9 @@ class MainRoutes extends Component {
 
                         {/* User componets*/}
 
-                        <Route path="/User/home" component={UserHome}/>
+                        <Route path="/User/Home" component={UserHome}/>
+                        <Route path="/User/Office" component={ViewOffice}/>
+                        <Route path="/User/Trips" component={ViewUserTrips}/>
 
                     </Switch>
                 </Router>

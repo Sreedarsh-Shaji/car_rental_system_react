@@ -64,16 +64,17 @@ class AllUsers extends Component {
                 <div>
                
                 <div className="container">
+                    <br/>
                 <h1>Users</h1>
+                <br/>
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>id</th>
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>License Number</th>
-                                <th>Active since</th>
-                                <th>User Status</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -85,12 +86,12 @@ class AllUsers extends Component {
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
                                             <td>{user.licenseNumber}</td>
-                                            <td>{moment(user.creationDateTime).format('DD-MM-YYYY hh:mm:ss')}</td>
-                                            <td>{user.status}</td>
+                                            
+                                            
 
                                              {/*<td>{user.done.toString()}</td>*/}
-                                            <td><button className="btn btn-warning" onClick={this.onSubmit}>{this.state.userstatus}</button></td>
-                                            <td><button className="btn btn-success">Update</button></td>
+                                            <td><button className="btn btn-warning" onClick={this.onSubmit}>Delete</button></td>
+                                            
                                         </tr>
                                 )
                             }
@@ -98,7 +99,7 @@ class AllUsers extends Component {
                         </table>
                 </div>
                 </div>
-            <Footer/>
+          
 
             </>
         );

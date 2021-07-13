@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
 import Header from './CommonComponents/Header';
-import Footer from './CommonComponents/Footer';
 import AuthenticationDataService from '../AuthenticationComponents/AuthenticationDataService';
 
-import moment from 'moment';
 
 class AllOfficers extends Component {
 
@@ -17,7 +15,6 @@ class AllOfficers extends Component {
             message : null
         }
     }
-
     componentDidMount() { //Called immediately when the component is mounted
         //this.refreshToDos()
         AuthenticationDataService.getAllOfficers().
@@ -26,26 +23,25 @@ class AllOfficers extends Component {
             console.log( response.data )
             } )
     }
-
-
     render() {
         return (
-            <>
-            
+            <>          
             <Header/>
                 <div>
                 
                 <div className="container">
+                    <br/>
                 <h1>Officers</h1>
+                <br/>
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
                                 <th>email ID</th>
                                 <th>Office Address</th>
                                 <th>Office Contact Number</th>
                                 <th>Alternate Number</th>
-                                <th>Last Login Date</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -58,10 +54,7 @@ class AllOfficers extends Component {
                                             <td>{officers.officeAddress}</td>
                                             <td>{officers.officePhone}</td>
                                             <td>{officers.officeAlternatePhone}</td>
-                                            <td>{moment(officers.creationDateTime).format('DD-MM-YYYY hh:mm:ss')}</td>
-                                             {/*<td>{user.done.toString()}</td>*/}
-                                            <td><button className="btn btn-warning">Delete</button></td>
-                                            <td><button className="btn btn-success">Update</button></td>
+                                            <td><button className="btn btn-warning">Delete</button></td>     
                                         </tr>
                                 )
                             }
@@ -69,8 +62,7 @@ class AllOfficers extends Component {
                         </table>
                 </div>
                 </div>
-            <Footer/>
-
+            
             </>
         );
     }

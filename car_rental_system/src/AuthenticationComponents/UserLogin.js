@@ -3,6 +3,8 @@ import AuthenticationDataService from "./AuthenticationDataService"
 import AuthenticationService from './AuthenticationService';
 import { withRouter } from 'react-router';
 
+
+
 class UserLogin extends Component {
     constructor(props) {
         super(props)
@@ -30,7 +32,7 @@ class UserLogin extends Component {
                 } 
                 else{  
                     this.setState({error:"Valid credentials"})
-                    history.push('/User/home');
+                    history.push('/user/home');
                 }
                 console.log(response.data) })
         .catch(  
@@ -91,4 +93,4 @@ class UserLogin extends Component {
     }
 }
 
-export default UserLogin;
+export default withRouter(UserLogin);

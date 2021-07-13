@@ -39,16 +39,14 @@ class AllAgencies extends Component {
                 <h1>List Agency</h1><br/>
                 
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>id</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Active since</th>
-                                <th>Last active</th>
+                                <th>Phone</th>  
                             </tr>
-                        </thead>
+                        </thead >
                         <tbody>
                         {
                                 this.state.users.map(
@@ -58,11 +56,8 @@ class AllAgencies extends Component {
                                             <td>{agency.name}</td>
                                             <td>{agency.email}</td>
                                             <td>{agency.phone}</td>
-                                            <td>{moment(agency.targetDate).format('DD-MM-YYYY hh:mm:ss')}</td>
-                                            <td>{moment(agency.lastLogin).format('DD-MM-YYYY hh:mm:ss')}</td>
                                              {/*<td>{user.done.toString()}</td>*/}
-                                            <td><button className="btn btn-warning">Delete</button></td>
-                                            <td><button className="btn btn-success">Update</button></td>
+                                            <td><button className="btn btn-warning">Delete</button></td>      
                                         </tr>
                                 )
                             }
@@ -70,11 +65,10 @@ class AllAgencies extends Component {
                         </table>
                 </div>
                 </div>
-            <Footer/>
+           
 
             </>
         );
     }
 }
-
 export default AllAgencies;

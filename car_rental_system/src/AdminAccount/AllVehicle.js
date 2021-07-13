@@ -36,7 +36,7 @@ class AllVehicle extends Component {
                 <div className="container">
                 <h1>Vehicle</h1>
                     <table class="table">
-                        <thead>
+                        <thead class="table-dark">
                             <tr>
                                 <th>Vehicle Id</th>
                                 <th>Register Number</th>
@@ -45,8 +45,7 @@ class AllVehicle extends Component {
                                 <th>Fuel Type</th>
                                 <th>Kilometer Run</th>
                                 <th>Hourly Rate</th>
-                                <th>Status</th>
-                                <th>Last  login</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -61,11 +60,7 @@ class AllVehicle extends Component {
                                             <td>{vehicle.fuelType}</td>
                                             <td>{vehicle.kmsOperated}</td>
                                             <td>{vehicle.hourlyRate}</td>
-                                            <td>{vehicle.status}</td>
-                                            <td>{moment(vehicle.lastLogin).format('DD-MM-YYYY hh:mm:ss')}</td>
-                                             {/*<td>{user.done.toString()}</td>*/}
                                             <td><button className="btn btn-warning">Delete</button></td>
-                                            <td><button className="btn btn-success">Update</button></td>
                                         </tr>
                                 )
                             }
@@ -73,7 +68,7 @@ class AllVehicle extends Component {
                         </table>
                 </div>
                 </div>
-            <Footer/>
+           
 
             </>
         );
