@@ -15,6 +15,8 @@ import Mainpage from '../LandingPage/Mainpage';
 import AboutComponent from './AboutComponent';
 import SignUpComponent from './SignUpComponent';
 import UserHome from '../UserAccount/UserHome';
+import ViewTrips from '../AgencyAccount/ViewTrips';
+import ViewVehicle from '../AgencyAccount/ViewVehicle';
 
 
 class MainRoutes extends Component {
@@ -41,6 +43,8 @@ class MainRoutes extends Component {
                         { /* Agency components */ }
                         <Route path="/Agency/Home" component={AgencyHomePage}/>
                         <Route path="/Agency/Offices" component={AgencyOfficesPage}/>
+                        <Route path="/Agency/trips" component={ViewTrips}/>
+                        <Route path="/Agency/vehicles" component={ViewVehicle}/>
 
 
                         {/* User componets*/}

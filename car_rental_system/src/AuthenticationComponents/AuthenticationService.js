@@ -31,7 +31,7 @@ class AuthenticationService{
     }
     isUserLoggedIn(){
         let user=sessionStorage.getItem('authenticatedUser')
-        return user=== null? false :true;
+        return user === null? false :true;
     }
 
 
@@ -59,8 +59,13 @@ class AuthenticationService{
 
      getLoggedinUsername()
      {
-         return sessionStorage.getItem('authenticatedUser');;
+         return sessionStorage.getItem('authenticatedUser');
      }
+
+     getLoggedInAgency()
+     {
+        return sessionStorage.getItem('authenticatedAgency');
+     }  
 
 }
 
