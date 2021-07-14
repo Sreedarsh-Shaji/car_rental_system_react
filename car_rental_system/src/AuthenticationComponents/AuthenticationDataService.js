@@ -39,11 +39,12 @@ class AuthenticationDataService{
     }
 
     agencySignup(data){
-        let ret = axios.post(`http://localhost:8085/api/v1/agency/signup/`,data);
+        
+        let ret = axios.post(`http://localhost:8085/api/v1/agency/agencySignup/`,data);
         return ret;
     }
     userSignup(data){
-        let ret = axios.post(`http://localhost:8085/api/v1/agency/login`,data);
+        let ret = axios.post(`http://localhost:8085/api/v1/user/usersignup`,data);
         return ret;
     }
 
@@ -68,7 +69,7 @@ class AuthenticationDataService{
         return users
     }
     getAllOfficers(){
-        let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllOffices`)
+        let users = axios.get(`http://localhost:8085/api/v1/agency/offcie`)
         return users
     }
     getAllTrips(){
@@ -79,8 +80,11 @@ class AuthenticationDataService{
         let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllVehicles`) 
         return users
     }
+    deleteVehicle(vid){
+        let users = axios.delete(`http://localhost:8085/api/v1/admin/vehicle/${vid}`) 
+        return users
+    }
     
-
 }
 
 export default new AuthenticationDataService();

@@ -42,6 +42,7 @@ class ViewVehicle extends Component {
             } )
     }
 
+
     onSubmit(values) {
 
         const { history } = this.props;
@@ -55,7 +56,7 @@ class ViewVehicle extends Component {
                     this.setState({message:"Invalid credentials"})
                 } 
                 else{  
-                    alert("Added data successfully");
+                    alert("Vehicle deleted successfully");
                     this.setState({message:"Valid credentials"})
                     history.push('/Agency/vehicles');
                 }
@@ -129,7 +130,7 @@ class ViewVehicle extends Component {
                                                 </tr>
                                         )
                                         }
-                                    
+
                                 </tbody>
                             </table>
 

@@ -26,7 +26,7 @@ class AgencyOfficesPage extends Component {
         this.onSubmit =this.onSubmit.bind(this);
         this.openModal = this.openModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        
+   
     }
 
     openModal = () => this.setState({ isOpen: true });
@@ -40,6 +40,8 @@ class AgencyOfficesPage extends Component {
             console.log( response.data )
             } )
     }
+
+    
 
     onSubmit(values) {
 

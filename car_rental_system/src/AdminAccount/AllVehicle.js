@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from './CommonComponents/Header';
-import Footer from './CommonComponents/Footer';
+
 import AuthenticationDataService from '../AuthenticationComponents/AuthenticationDataService';
 
 import moment from 'moment';
@@ -16,6 +16,7 @@ class AllVehicle extends Component {
             users: [],
             message : null
         }
+        this.deleteVehicle = this.deleteVehicle.bind(this);
     }
 
     componentDidMount() { //Called immediately when the component is mounted
@@ -25,6 +26,27 @@ class AllVehicle extends Component {
             this.setState ({ users : response.data }) 
             console.log( response.data )
             } )
+    }
+    deleteVehicle(vid)
+    {
+        AuthenticationDataService.deleteVehicle(vid)
+        .then((response) => { 
+                if(response.data == null)
+                {
+                    alert("Invalid credentials");
+                    this.setState({message:"Invalid credentials"})
+                } 
+                else{  
+                    alert("Vehicle deleted successfully");
+                    this.setState({message:"Valid credentials"})
+                    
+                }
+                console.log(response.data) })
+        .catch(  
+        err=>{
+            console.log(err)
+            this.setState({error:"Invalid credentials"})
+        } )
     }
 
     render() {
@@ -44,8 +66,7 @@ class AllVehicle extends Component {
                                 <th>Manufacturer</th>
                                 <th>Fuel Type</th>
                                 <th>Kilometer Run</th>
-                                <th>Hourly Rate</th>
-                                
+                                <th>Hourly Rate</th>    
                             </tr>
                         </thead>
                         <tbody>
@@ -60,7 +81,7 @@ class AllVehicle extends Component {
                                             <td>{vehicle.fuelType}</td>
                                             <td>{vehicle.kmsOperated}</td>
                                             <td>{vehicle.hourlyRate}</td>
-                                            <td><button className="btn btn-warning">Delete</button></td>
+                                            <td><button className="btn btn-warning"  onClick={() => this.deleteVehicle(vehicle.vehicleId)}>Delete</button></td>
                                         </tr>
                                 )
                             }
@@ -68,8 +89,6 @@ class AllVehicle extends Component {
                         </table>
                 </div>
                 </div>
-           
-
             </>
         );
     }

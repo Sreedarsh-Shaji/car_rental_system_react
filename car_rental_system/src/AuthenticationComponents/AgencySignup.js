@@ -22,7 +22,7 @@ class AgencySignup extends Component {
                 phone:''
               
         }
-
+        
         this.onSubmit = this.onSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -35,11 +35,11 @@ class AgencySignup extends Component {
                 agencyId: null,
                 approved: true,
                 creationDateTime : '2021-07-12T16:04:37.500Z',
-                email :'',
+                email : this.state.email,
                 lastLogin : '2021-07-12T16:04:37.500Z',
-                name:'',
-                password :'',
-                phone:''
+                name: this.state.name,
+                password : this.state.password,
+                phone:this.state.phone
         }
 
         AuthenticationDataService.agencySignup(requestBody)
@@ -112,6 +112,7 @@ class AgencySignup extends Component {
                             <input type="text" name="phone" className="form-control" onChange={this.handleChange}
                                 placeholder="Enter Phone" />
                         </div>
+
 
                         <button type="submit" className="btn btn-success" style={{ width: "100%" }}
                             onClick={this.onSubmit}

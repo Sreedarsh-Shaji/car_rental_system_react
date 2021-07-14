@@ -12,14 +12,15 @@ class UserSignup extends Component {
 
         this.state = {
             
-                agencyId:'',
-                approved: true,
-                creationDateTime : '2021-07-12T16:04:37.500Z',
-                email :'',
-                lastLogin : '2021-07-12T16:04:37.500Z',
-                name:'',
-                password :'',
-                phone:''
+            creationDateTime : "2021-07-14T05:02:29.236Z",
+            email : '',
+            lastLogin : null,
+            licenseNumber: '',
+            name : '',
+            password : '',
+            phoneNumber: '',
+            status : null,
+            userId : 0
               
         }
 
@@ -32,14 +33,17 @@ class UserSignup extends Component {
         const { history } = this.props;
 
         let requestBody ={
-                agencyId: null,
-                approved: true,
-                creationDateTime : '2021-07-12T16:04:37.500Z',
-                email :'',
-                lastLogin : '2021-07-12T16:04:37.500Z',
-                name:'',
-                password :'',
-                phone:''
+            
+                creationDateTime : "2021-07-14T05:02:29.236Z",
+                email : this.state.email,
+                lastLogin : "2021-07-14T05:02:29.236Z",
+                licenseNumber: this.state.licenseNumber,
+                name : this.state.name,
+                password : this.state.password,
+                phoneNumber: this.state.phoneNumber,
+                status : null,
+                userId : 0
+              
         }
 
         AuthenticationDataService.userSignup(requestBody)
@@ -102,6 +106,12 @@ class UserSignup extends Component {
                         </div>
 
                         <div className="form-group">
+                            <label>LicenseNumber</label>
+                            <input type="text" name="licenseNumber" className="form-control" onChange={this.handleChange}
+                                placeholder="Enter LicenseNumber" />
+                        </div>
+
+                        <div className="form-group">
                             <label>Password</label>
                             <input type="password" name="password" className="form-control" onChange={this.handleChange}
                                 id="exampleInputPassword1" placeholder="Password" />
@@ -109,7 +119,7 @@ class UserSignup extends Component {
 
                         <div className="form-group">
                             <label>Phone</label>
-                            <input type="text" name="phone" className="form-control" onChange={this.handleChange}
+                            <input type="text" name="phoneNumber" className="form-control" onChange={this.handleChange}
                                 placeholder="Enter Phone" />
                         </div>
 
