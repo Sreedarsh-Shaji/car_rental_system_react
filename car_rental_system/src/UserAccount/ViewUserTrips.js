@@ -18,12 +18,31 @@ class ViewUserTrips extends Component {
             message : null
         }
         this.openModal = this.openModal.bind(this);
+<<<<<<< HEAD
         this.handleChange = this.handleChange.bind(this);
         this.getOfficeName = this.getOfficeName.bind(this);
+=======
+        this.deleteTrip = this.deleteTrip.bind(this);
+>>>>>>> 052c101a38bb648d159b2c3ea8170c4f26a4a1a9
     }
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
 
+    deleteTrip(id)
+    {
+        AuthenticationDataService.deleteTrip(id).
+        then( response => { 
+            alert("Deleted trip")
+            AuthenticationDataService.getAllTrips().
+            then( response => { 
+                this.setState ({ users : response.data }) 
+                console.log( response.data )
+                } )
+            } )
+
+            //reload table
+         
+    }
 
 /*
 
@@ -156,6 +175,7 @@ class ViewUserTrips extends Component {
                                     {
                                         this.state.users.map(
                                             trips =>
+                                            trips.active == 1 ?
                                                 <tr key={trips.tripId}>
                                                     <td>{trips.tripId}</td>     
                                                     <td>{trips.pickupOfficeLocation}</td>
@@ -164,8 +184,10 @@ class ViewUserTrips extends Component {
                                                     <td>{trips.endDate}</td>    
                                                     <td>{trips.agency.name}</td>
                                                     <td>{trips.user.name}</td>
-                                                    <td><button className="btn btn-warning" onClick={this.onSubmit}>Delete</button></td>           
-                                                </tr>
+                                                    <td><button className="btn btn-warning" onClick={()=>this.deleteTrip(trips.tripId)}>Delete</button></td>           
+                                                </tr>:
+                                                ""
+
                                         )
                                     }
                                    

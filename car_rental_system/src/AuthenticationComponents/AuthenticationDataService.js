@@ -89,6 +89,11 @@ class AuthenticationDataService{
         let users = axios.delete(`http://localhost:8085/api/v1/admin/vehicle/${vid}`) 
         return users
     }
+
+    deleteTrip(id){
+        let users = axios.delete(`http://localhost:8085/api/v1/trips/delete/${id}`)
+        return users
+    }
     
 }
 
