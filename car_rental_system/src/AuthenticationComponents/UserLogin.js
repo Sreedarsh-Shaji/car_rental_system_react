@@ -22,7 +22,7 @@ class UserLogin extends Component {
     onSubmit(values) {
 
         const { history } = this.props;
-
+        
         AuthenticationDataService.userLogin(this.state.username, this.state.password)
         .then((response) => { 
                 AuthenticationService.registerSuccessfulUserLogin(response.data);  
@@ -49,8 +49,9 @@ class UserLogin extends Component {
     handleChange(event)//This is a synthetic event
     {
         this.setState({ [event.target.name]: event.target.value });
+        
     }
-
+    
     render() {
         return (
             <div className="container">
@@ -76,7 +77,7 @@ class UserLogin extends Component {
 
                         <div className="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" className="form-control" onChange={this.handleChange}
+                            <input type="password"  name="password" className="form-control" onChange={this.handleChange}
                                 id="exampleInputPassword1" placeholder="Password" />
                         </div>
 

@@ -11,7 +11,7 @@ class UserSignup extends Component {
         super(props)
 
         this.state = {
-            
+            backgroundColor : "#fff",
             creationDateTime : "2021-07-14T05:02:29.236Z",
             email : '',
             lastLogin : null,
@@ -28,9 +28,12 @@ class UserSignup extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+   
+
     onSubmit(values) {
 
         const { history } = this.props;
+        
 
         let requestBody ={
             
@@ -74,6 +77,15 @@ class UserSignup extends Component {
     handleChange(event)//This is a synthetic event
     {
         this.setState({ [event.target.name]: event.target.value });
+        const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+        if(strongRegex.test(event.target.value)) {
+            this.setState({ backgroundColor: "#0F9D58" });
+        } else if(mediumRegex.test(event.target.value)) {
+            this.setState({ backgroundColor: "#F4B400" });
+        } else {
+            this.setState({ backgroundColor: "#DB4437" });
+        }
     }
 
     render() {
@@ -92,35 +104,35 @@ class UserSignup extends Component {
 
                 <div className="row">
                     <div>
-                        <div className="form-group">
+                        <div className="form-group" >
                             <label>Email address</label>
                             <input type="email" name="email" className="form-control" onChange={this.handleChange}
-                                placeholder="Enter email" />
+                                placeholder="Enter email" style={{ backgroundColor: this.state.backgroundColor }} />
                             <small className="form-text text-muted">Your registered email goes here</small>
                         </div>
 
                         <div className="form-group">
                             <label>Name</label>
                             <input type="text" name="name" className="form-control" onChange={this.handleChange}
-                                placeholder="Enter Name" />
+                                placeholder="Enter Name"  style={{ backgroundColor: this.state.backgroundColor }}/>
                         </div>
 
                         <div className="form-group">
                             <label>LicenseNumber</label>
                             <input type="text" name="licenseNumber" className="form-control" onChange={this.handleChange}
-                                placeholder="Enter LicenseNumber" />
+                                placeholder="Enter LicenseNumber"  style={{ backgroundColor: this.state.backgroundColor }}/>
                         </div>
 
                         <div className="form-group">
                             <label>Password</label>
                             <input type="password" name="password" className="form-control" onChange={this.handleChange}
-                                id="exampleInputPassword1" placeholder="Password" />
+                                id="exampleInputPassword1" placeholder="Password"  style={{ backgroundColor: this.state.backgroundColor }}/>
                         </div>
 
                         <div className="form-group">
                             <label>Phone</label>
                             <input type="text" name="phoneNumber" className="form-control" onChange={this.handleChange}
-                                placeholder="Enter Phone" />
+                                placeholder="Enter Phone"  style={{ backgroundColor: this.state.backgroundColor }} />
                         </div>
 
                         <button type="submit" className="btn btn-success" style={{ width: "100%" }}

@@ -65,7 +65,11 @@ class AuthenticationService{
      getLoggedInAgency()
      {
         return sessionStorage.getItem('authenticatedAgency');
-     }  
+     } 
+     getLoggedInUser()
+     {
+        return sessionStorage.getItem('authenticatedUser');
+     } 
 
 }
 

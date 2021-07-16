@@ -182,6 +182,7 @@ class AgencyOfficesPage extends Component {
                                     <label for="exampleInputEmail1">Alternate Phone No.</label>
                                     <input type="text" name="alphone" class="form-control" id="location" onChange={this.handleChange}/>
                                 </div>
+                                
                                 <button type="submit" onClick={this.onSubmit} class="btn btn-primary">Submit</button>
                             </form>
 

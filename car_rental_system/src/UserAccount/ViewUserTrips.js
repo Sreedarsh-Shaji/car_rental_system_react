@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Header from './CommonComponents/Header';
 import { Modal, Button } from "react-bootstrap";
-
 import AuthenticationDataService from '../AuthenticationComponents/AuthenticationDataService';
+import AuthenticationService from '../AuthenticationComponents/AuthenticationService';
+
+
 
 class ViewUserTrips extends Component {
 
@@ -12,9 +14,12 @@ class ViewUserTrips extends Component {
 
         this.state = {
             users: [],
+            office: [],
             message : null
         }
         this.openModal = this.openModal.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.getOfficeName = this.getOfficeName.bind(this);
     }
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
@@ -46,7 +51,63 @@ class ViewUserTrips extends Component {
             this.setState ({ users : response.data }) 
             console.log( response.data )
             } )
+        
+        AuthenticationDataService.getAllOfficers().
+        then( response => { 
+            this.setState ({ office : response.data }) 
+            console.log( response.data )
+            } )   
     }
+
+    getOfficeName(officeId)//Get office name
+    {
+       
+    }
+
+    handleChange(event)//This is a synthetic event
+    {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+
+    onSubmit(values) {
+
+       // const { history } = this.props;
+
+        let requestBody = {
+
+            agency: AuthenticationService.getLoggedInUser(),
+            coordinates : this.state.latittude + "," + this.state.logitude,
+            creationDateTime: "2021-07-12T16:04:37.493Z",
+            emailId : this.state.email,
+            officeAddress:  this.state.location,
+            officeAlternatePhone : this.state.alphone,
+            officeId : 0,
+            officePhone : this.state.phone,
+            password: "sample"
+    }
+
+        AuthenticationDataService.addOffice(requestBody)
+        .then((response) => { 
+                if(response.data == null)
+                {
+                    alert("Invalid credentials");
+                    this.setState({message:"Invalid credentials"})
+                } 
+                else{  
+                    alert("Added data successfully");
+                    this.setState({message:"Valid credentials"})
+                    //history.push('/Agency/Home');
+                }
+                console.log(response.data) })
+        .catch(  
+        err=>{
+            console.log(err)
+            this.setState({error:"Invalid credentials"})
+        } )
+    
+    }
+
     render() {
         return (
             <div>
@@ -56,7 +117,7 @@ class ViewUserTrips extends Component {
                     <div className="row">
                         <div className="col">
                             <br />
-                            <h3 style={{ textAlign: "center" }}>All Offices</h3>
+                            <h3 style={{ textAlign: "center" }}>All Trips</h3>
                             
                         </div>
                     </div>
@@ -67,7 +128,7 @@ class ViewUserTrips extends Component {
 
                             
                             <Button variant="primary" onClick={this.openModal}>
-                                ADD Office
+                                ADD Trips
                             </Button>
                         </div>
                     </div>
@@ -116,7 +177,7 @@ class ViewUserTrips extends Component {
                     </div>
                     <Modal show={this.state.isOpen}>
                         <Modal.Header closeButton onClick={this.closeModal}>
-                            <Modal.Title>{this.state.modelAction == "Add" ? "Update the office" : "Add an office" }</Modal.Title>
+                            <Modal.Title>Add trip</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
 
@@ -124,11 +185,11 @@ class ViewUserTrips extends Component {
                                 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Start Date</label>
-                                    <input type="date" name="startDate" class="form-control" id="location" onChange={this.handleChange}/>
+                                    <input type="datetime-local" name="startDate" class="form-control" id="location" onChange={this.handleChange}/>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">End Date</label>
-                                    <input type="date" name="endDate" class="form-control" id="location" onChange={this.handleChange}/>
+                                    <input type="datetime-local" name="endDate" class="form-control" id="location" onChange={this.handleChange}/>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Phone No.</label>
@@ -136,7 +197,10 @@ class ViewUserTrips extends Component {
                                 </div> 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Agency Name</label>
-                                    <input type="" name="agencyName" class="form-control" id="location" onChange={this.handleChange}/>
+                                    <select type="" name="agencyName" class="form-control" id="location" onChange={this.handleChange}>
+                                    {this.state.users.map((office => <option key={office.value} value={office.value}>{office.display}</option>))}
+                                    </select>
+
                                 </div>   
                                 <button type="submit" onClick={this.onSubmit} class="btn btn-primary">Submit</button>
                             </form>
@@ -150,12 +214,8 @@ class ViewUserTrips extends Component {
                         }
                     </Modal>
                         
-                    </div>
-                    
-                </div>
-                
-               
-            
+                    </div>                   
+                </div>                 
         );
     }
 }

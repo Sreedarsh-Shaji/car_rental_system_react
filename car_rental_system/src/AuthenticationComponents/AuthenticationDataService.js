@@ -72,6 +72,11 @@ class AuthenticationDataService{
         let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllOffices`)
         return users
     }
+    
+    getAnOffice(officeId){
+        let ret = axios.get(`http://localhost:8085/api/v1/trips/get-by-id/${officeId}`)
+        return ret
+    }
     getAllTrips(){
         let users = axios.get(`http://localhost:8085/api/v1/user/user_see_all_trips`)
         return users
