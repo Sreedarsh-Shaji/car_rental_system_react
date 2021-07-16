@@ -56,8 +56,7 @@ class AllAgencies extends Component {
                                             <td>{agency.name}</td>
                                             <td>{agency.email}</td>
                                             <td>{agency.phone}</td>
-                                             {/*<td>{user.done.toString()}</td>*/}
-                                            <td><button className="btn btn-warning">Delete</button></td>      
+                                                
                                         </tr>
                                 )
                             }

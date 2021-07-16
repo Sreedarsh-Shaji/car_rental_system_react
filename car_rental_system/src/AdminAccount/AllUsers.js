@@ -19,6 +19,7 @@ class AllUsers extends Component {
             userstatus: "Suspend"
         }
         this.onSubmit = this.onSubmit.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     onSubmit(values) {
@@ -43,6 +44,21 @@ class AllUsers extends Component {
             console.log(err)
             this.setState({error:"Invalid credentials"})
         } )
+    }
+    deleteUser(id)
+    {
+        AuthenticationDataService.deleteUser(id).
+        then( response => { 
+            alert("Deleted user")
+            AuthenticationDataService.getAllusers().
+            then( response => { 
+                this.setState ({ users : response.data }) 
+                console.log( response.data )
+                } )
+            } )
+
+            //reload table
+         
     }
 
 
@@ -90,7 +106,7 @@ class AllUsers extends Component {
                                             
 
                                              {/*<td>{user.done.toString()}</td>*/}
-                                            <td><button className="btn btn-warning" onClick={this.onSubmit}>Delete</button></td>
+                                            <td><button className="btn btn-warning" onClick={()=>this.deleteUser(user.userId)}>Delete</button></td>
                                             
                                         </tr>
                                 )

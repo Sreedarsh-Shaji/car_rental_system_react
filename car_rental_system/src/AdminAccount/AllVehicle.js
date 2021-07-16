@@ -27,26 +27,17 @@ class AllVehicle extends Component {
             console.log( response.data )
             } )
     }
-    deleteVehicle(vid)
+    deleteVehicle(id)
     {
-        AuthenticationDataService.deleteVehicle(vid)
-        .then((response) => { 
-                if(response.data == null)
-                {
-                    alert("Invalid credentials");
-                    this.setState({message:"Invalid credentials"})
-                } 
-                else{  
-                    alert("Vehicle deleted successfully");
-                    this.setState({message:"Valid credentials"})
-                    
-                }
-                console.log(response.data) })
-        .catch(  
-        err=>{
-            console.log(err)
-            this.setState({error:"Invalid credentials"})
-        } )
+        AuthenticationDataService.deleteVehicle(id).
+        then( response => { 
+            alert("Deleted trip")
+            AuthenticationDataService.getAllVehicles().
+            then( response => { 
+                this.setState ({ users : response.data }) 
+                console.log( response.data )
+                } )
+            } )
     }
 
     render() {

@@ -81,17 +81,35 @@ class AuthenticationDataService{
         let users = axios.get(`http://localhost:8085/api/v1/user/user_see_all_trips`)
         return users
     }
+    getAllOffices(){
+        let users = axios.get(`http://localhost:8085/api/v1/trips/see-all-offices`)
+        return users
+    }
     getAllVehicles(){
         let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllVehicles`) 
         return users
     }
-    deleteVehicle(vid){
-        let users = axios.delete(`http://localhost:8085/api/v1/admin/vehicle/${vid}`) 
+    deleteVehicle(id){
+        let users = axios.delete(`http://localhost:8085/api/v1/admin/vehicle/${id}`) 
         return users
     }
 
     deleteTrip(id){
         let users = axios.delete(`http://localhost:8085/api/v1/trips/delete/${id}`)
+        return users
+    }
+    deleteUser(id){
+        let users = axios.delete(`http://localhost:8085/api/v1/trips/delete/${id}`)
+        return users
+    }
+    
+
+    getAgencyBasesOnOfficeLocation(location){
+        let users = axios.get(`http://localhost:8085/api/v1/trips/see-all-offices/${location}`)
+        return users
+    }    
+    getOfficeBasedOnAgencyName(agencyName){
+        let users = axios.get(`http://localhost:8085/api/v1/trips/see-office-from-agency/${agencyName}`)
         return users
     }
     

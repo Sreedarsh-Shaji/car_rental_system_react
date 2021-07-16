@@ -1,143 +1,104 @@
 import React, { Component } from 'react';
 import Header from './CommonComponents/Header';
 import { Modal, Button } from "react-bootstrap";
+
 import AuthenticationDataService from '../AuthenticationComponents/AuthenticationDataService';
-import AuthenticationService from '../AuthenticationComponents/AuthenticationService';
-
-
 
 class ViewUserTrips extends Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props)
 
         this.state = {
             users: [],
-            office: [],
-            message : null
+            message: null,
+            offices: [],
+            filteredoffices: [],
+            agencies:[],
+            pickup:'',
         }
         this.openModal = this.openModal.bind(this);
-<<<<<<< HEAD
-        this.handleChange = this.handleChange.bind(this);
-        this.getOfficeName = this.getOfficeName.bind(this);
-=======
         this.deleteTrip = this.deleteTrip.bind(this);
->>>>>>> 052c101a38bb648d159b2c3ea8170c4f26a4a1a9
+        this.getAgencyBasedOnOfficeLocation = this.getAgencyBasedOnOfficeLocation.bind(this);
+        this.handleChange =  this.handleChange.bind(this);
     }
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
 
-    deleteTrip(id)
-    {
+    deleteTrip(id) {
         AuthenticationDataService.deleteTrip(id).
-        then( response => { 
-            alert("Deleted trip")
-            AuthenticationDataService.getAllTrips().
-            then( response => { 
-                this.setState ({ users : response.data }) 
-                console.log( response.data )
-                } )
-            } )
+            then(response => {
+                alert("Deleted trip")
+                AuthenticationDataService.getAllTrips().
+                    then(response => {
+                        this.setState({ users: response.data })
+                        console.log(response.data)
+                    })
+            })
 
-            //reload table
-         
-    }
+        //reload table
 
-/*
-
- {
-                                        this.state.users.map(
-                                            trips =>
-                                                <tr key={trips.tripId}>
-                                                    <td>{trips.tripId}</td>
-                                                    <td>{trips.agency}</td>
-                                                    <td>{trips.pickupOfficeLocation}</td>
-                                                    <td>{trips.returnOfficeLocation}</td>
-                                                    <td>{trips.startDate}</td>
-                                                    <td>{trips.endDate}</td>
-                                                    <td><button className="btn btn-warning" >Delete</button></td>
-                                                </tr>
-                                        )
-                                    }
-
-*/
-
-    componentDidMount() { //Called immediately when the component is mounted
-        //this.refreshToDos()
-        AuthenticationDataService.getAllTrips().
-        then( response => { 
-            this.setState ({ users : response.data }) 
-            console.log( response.data )
-            } )
-        
-        AuthenticationDataService.getAllOfficers().
-        then( response => { 
-            this.setState ({ office : response.data }) 
-            console.log( response.data )
-            } )   
-    }
-
-    getOfficeName(officeId)//Get office name
-    {
-       
     }
 
     handleChange(event)//This is a synthetic event
     {
+        
         this.setState({ [event.target.name]: event.target.value });
+        if( event.target.name == "pickup")
+        {
+            this.getAgencyBasedOnOfficeLocation(event.target.value)
+        }
+        else if(event.target.name == "agency"){
+            this.getOfficesBasedOnAgency(event.target.value)
+        }
     }
 
-
-    onSubmit(values) {
-
-       // const { history } = this.props;
-
-        let requestBody = {
-
-            agency: AuthenticationService.getLoggedInUser(),
-            coordinates : this.state.latittude + "," + this.state.logitude,
-            creationDateTime: "2021-07-12T16:04:37.493Z",
-            emailId : this.state.email,
-            officeAddress:  this.state.location,
-            officeAlternatePhone : this.state.alphone,
-            officeId : 0,
-            officePhone : this.state.phone,
-            password: "sample"
+    getAgencyBasedOnOfficeLocation(loc)
+    {
+        AuthenticationDataService.getAgencyBasesOnOfficeLocation(loc).
+            then(response => {
+                this.setState({ agencies: response.data })
+                console.log(response.data)
+            })
     }
 
-        AuthenticationDataService.addOffice(requestBody)
-        .then((response) => { 
-                if(response.data == null)
-                {
-                    alert("Invalid credentials");
-                    this.setState({message:"Invalid credentials"})
-                } 
-                else{  
-                    alert("Added data successfully");
-                    this.setState({message:"Valid credentials"})
-                    //history.push('/Agency/Home');
-                }
-                console.log(response.data) })
-        .catch(  
-        err=>{
-            console.log(err)
-            this.setState({error:"Invalid credentials"})
-        } )
-    
+    getOfficesBasedOnAgency(loc)
+    {
+        alert(loc)
+        AuthenticationDataService.getOfficeBasedOnAgencyName(loc).
+            then(response => {
+                this.setState({ filteredoffices: response.data })
+                console.log(response.data)
+            })
+    }
+
+    componentDidMount() { //Called immediately when the component is mounted
+        //this.refreshToDos()
+        AuthenticationDataService.getAllTrips().
+            then(response => {
+                this.setState({ users: response.data })
+                console.log(response.data)
+            })
+
+        //Add the detais of the office locations 
+        AuthenticationDataService.getAllOffices().
+        then(response => {
+            this.setState({ offices: response.data })
+            console.log(response.data)
+        })
     }
 
     render() {
         return (
             <div>
-                <Header/>
-                
+                <Header />
+
                 <div className="container">
                     <div className="row">
                         <div className="col">
                             <br />
-                            <h3 style={{ textAlign: "center" }}>All Trips</h3>
-                            
+                            <h3 style={{ textAlign: "center" }}>All Offices</h3>
+
                         </div>
                     </div>
 
@@ -145,9 +106,9 @@ class ViewUserTrips extends Component {
                         <div className="col-1"></div>
                         <div className="col-2">
 
-                            
+
                             <Button variant="primary" onClick={this.openModal}>
-                                ADD Trips
+                                ADD Office
                             </Button>
                         </div>
                     </div>
@@ -169,28 +130,28 @@ class ViewUserTrips extends Component {
                                         <th scope="col">User</th>
                                         <th scope="col">Delete Trips</th>
                                     </tr>
-                                </thead>    
+                                </thead>
                                 <tbody>
 
                                     {
                                         this.state.users.map(
                                             trips =>
-                                            trips.active == 1 ?
-                                                <tr key={trips.tripId}>
-                                                    <td>{trips.tripId}</td>     
-                                                    <td>{trips.pickupOfficeLocation}</td>
-                                                    <td>{trips.returnOfficeLocation}</td>
-                                                    <td>{trips.startDate}</td>
-                                                    <td>{trips.endDate}</td>    
-                                                    <td>{trips.agency.name}</td>
-                                                    <td>{trips.user.name}</td>
-                                                    <td><button className="btn btn-warning" onClick={()=>this.deleteTrip(trips.tripId)}>Delete</button></td>           
-                                                </tr>:
-                                                ""
+                                                trips.active == 1 ?
+                                                    <tr key={trips.tripId}>
+                                                        <td>{trips.tripId}</td>
+                                                        <td>{trips.pickupOfficeLocation}</td>
+                                                        <td>{trips.returnOfficeLocation}</td>
+                                                        <td>{trips.startDate}</td>
+                                                        <td>{trips.endDate}</td>
+                                                        <td>{trips.agency.name}</td>
+                                                        <td>{trips.user.name}</td>
+                                                        <td><button className="btn btn-warning" onClick={() => this.deleteTrip(trips.tripId)}>Delete</button></td>
+                                                    </tr> :
+                                                    ""
 
                                         )
                                     }
-                                   
+
                                 </tbody>
                             </table>
 
@@ -199,45 +160,73 @@ class ViewUserTrips extends Component {
                     </div>
                     <Modal show={this.state.isOpen}>
                         <Modal.Header closeButton onClick={this.closeModal}>
-                            <Modal.Title>Add trip</Modal.Title>
+                            <Modal.Title>{this.state.modelAction == "Add" ? "Update the office" : "Add an office"}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
 
                             <form>
-                                
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Start Date</label>
-                                    <input type="datetime-local" name="startDate" class="form-control" id="location" onChange={this.handleChange}/>
+                                    <input type="datetime-local" name="startDate" class="form-control" id="location" onChange={this.handleChange} />
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">End Date</label>
-                                    <input type="datetime-local" name="endDate" class="form-control" id="location" onChange={this.handleChange}/>
+                                    <input type="datetime-local" name="endDate" class="form-control" id="location" onChange={this.handleChange} />
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Phone No.</label>
-                                    <input type="text" name="phone" class="form-control" id="location" onChange={this.handleChange}/>
-                                </div> 
+                                    <input type="text" name="phone" class="form-control" id="location" onChange={this.handleChange} />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Pickup Location</label>
+                                    <select type="text" name="pickup" class="form-control" onClick={this.handleChange} >
+                                    {
+                                        this.state.offices.map(
+                                            office =>
+                                                <option>{office}</option>
+                                        )
+                                    }
+                                    </select>   
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Agency Name</label>
-                                    <select type="" name="agencyName" class="form-control" id="location" onChange={this.handleChange}>
-                                    {this.state.users.map((office => <option key={office.value} value={office.value}>{office.display}</option>))}
-                                    </select>
-
-                                </div>   
+                                    <select type="text" name="agency" class="form-control" id="location" onClick={this.handleChange} >
+                                    {
+                                        this.state.agencies.map(
+                                            agency =>
+                                                <option value={agency.agencyId}>{agency.name}</option>
+                                        )
+                                    }
+                                    </select>  
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Drop off location</label>
+                                    <select type="text" name="dropoff" class="form-control" id="location" onChange={this.handleChange} >
+                                    {
+                                        this.state.filteredoffices.map(
+                                            ofc =>
+                                                <option value={ofc.officeAddress}>{ofc.officeAddress}</option>
+                                        )
+                                    }
+                                    </select>  
+                                </div>
                                 <button type="submit" onClick={this.onSubmit} class="btn btn-primary">Submit</button>
                             </form>
 
                         </Modal.Body>
                         {
-                        
-                        /*<Modal.Footer>
-                            <Button variant="secondary" onClick={this.closeModal} >Close</Button>
-                        </Modal.Footer>*/
+
+                            /*<Modal.Footer>
+                                <Button variant="secondary" onClick={this.closeModal} >Close</Button>
+                            </Modal.Footer>*/
                         }
                     </Modal>
-                        
-                    </div>                   
-                </div>                 
+
+                </div>
+
+            </div>
+
+
         );
     }
 }
