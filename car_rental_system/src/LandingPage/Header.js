@@ -14,7 +14,7 @@ class Header extends Component {
                         <ul  className="navbar-nav navbar-collapse justify-content-end">
                         </ul>
                         <ul className="navbar-nav">
-                            <li><Link to="/home"  className="nav-link">Home</Link></li>
+                            
                             <li><Link to="/sign"  className="nav-link">SignUp</Link></li>
                             <li><Link to="/login"  className="nav-link">Login</Link></li>
                         
