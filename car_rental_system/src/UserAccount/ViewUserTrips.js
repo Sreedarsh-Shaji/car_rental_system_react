@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './CommonComponents/Header';
+import { Modal, Button } from "react-bootstrap";
 
 import AuthenticationDataService from '../AuthenticationComponents/AuthenticationDataService';
 
@@ -13,7 +14,10 @@ class ViewUserTrips extends Component {
             users: [],
             message : null
         }
+        this.openModal = this.openModal.bind(this);
     }
+    openModal = () => this.setState({ isOpen: true });
+    closeModal = () => this.setState({ isOpen: false });
 
 
 /*
@@ -52,8 +56,19 @@ class ViewUserTrips extends Component {
                     <div className="row">
                         <div className="col">
                             <br />
-                            <h3 style={{ textAlign: "center" }}>All Trips</h3>
+                            <h3 style={{ textAlign: "center" }}>All Offices</h3>
                             
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-1"></div>
+                        <div className="col-2">
+
+                            
+                            <Button variant="primary" onClick={this.openModal}>
+                                ADD Office
+                            </Button>
                         </div>
                     </div>
                     <br />
@@ -97,13 +112,50 @@ class ViewUserTrips extends Component {
                             </table>
 
                         </div>
+                        <div className="col-2"></div>
+                    </div>
+                    <Modal show={this.state.isOpen}>
+                        <Modal.Header closeButton onClick={this.closeModal}>
+                            <Modal.Title>{this.state.modelAction == "Add" ? "Update the office" : "Add an office" }</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+
+                            <form>
+                                
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Start Date</label>
+                                    <input type="date" name="startDate" class="form-control" id="location" onChange={this.handleChange}/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">End Date</label>
+                                    <input type="date" name="endDate" class="form-control" id="location" onChange={this.handleChange}/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone No.</label>
+                                    <input type="text" name="phone" class="form-control" id="location" onChange={this.handleChange}/>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Agency Name</label>
+                                    <input type="" name="agencyName" class="form-control" id="location" onChange={this.handleChange}/>
+                                </div>   
+                                <button type="submit" onClick={this.onSubmit} class="btn btn-primary">Submit</button>
+                            </form>
+
+                        </Modal.Body>
+                        {
+                        
+                        /*<Modal.Footer>
+                            <Button variant="secondary" onClick={this.closeModal} >Close</Button>
+                        </Modal.Footer>*/
+                        }
+                    </Modal>
                         
                     </div>
                     
                 </div>
                 
                
-            </div>
+            
         );
     }
 }

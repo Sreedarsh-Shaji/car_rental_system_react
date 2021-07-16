@@ -40,6 +40,20 @@ class ViewVehicle extends Component {
             this.setState ({ users : response.data }) 
             console.log( response.data )
             } )
+     fetch("http://localhost:8085/api/v1/agency/office")
+    .then((response) => {
+      return response.json();
+    })
+    .then(data => {
+      let officeFromApi = data.map(office => {
+        return {value: office, display: office}
+      });
+      this.setState({
+        teams: [{value: '', display: '(Select office'}].concat(officeFromApi)
+      });
+    }).catch(error => {
+      console.log(error);
+    });
     }
 
 
@@ -174,6 +188,7 @@ class ViewVehicle extends Component {
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Office</label>
                                     <select type="text" name="office" class="form-control" id="location" onChange={this.handleChange}>
+                                    {this.state.users.map(user => <option key={user.value} value={user.value}>{user.display}</option>)}
                                     </select>    
                                 </div>
                                 <button type="submit" onClick={this.onSubmit} class="btn btn-primary">Submit</button>
