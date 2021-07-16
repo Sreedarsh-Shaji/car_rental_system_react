@@ -64,24 +64,21 @@ class ViewTrips extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                {
+                                        this.state.users.map(
+                                            trips =>
+                                                <tr key={trips.tripId}>
+                                                    <td>{trips.tripId}</td>     
+                                                    <td>{trips.pickupOfficeLocation}</td>
+                                                    <td>{trips.returnOfficeLocation}</td>
+                                                    <td>{trips.startDate}</td>
+                                                    <td>{trips.endDate}</td>    
+                                                    <td>{trips.agency.name}</td>
+                                                    <td>{trips.user.name}</td>   
+                                                    <td><button className="btn btn-warning" onClick={this.onSubmit}>Delete</button></td>        
+                                                </tr>
+                                        )
+                                    }
                                 </tbody>
                             </table>
 

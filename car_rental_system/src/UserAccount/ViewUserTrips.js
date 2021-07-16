@@ -56,9 +56,6 @@ class ViewUserTrips extends Component {
                             
                         </div>
                     </div>
-
-                    
-
                     <br />
 
                     <div className="row">
@@ -77,13 +74,24 @@ class ViewUserTrips extends Component {
                                         <th scope="col">User</th>
                                         <th scope="col">Delete Trips</th>
                                     </tr>
-                                </thead>
+                                </thead>    
+                                <tbody>
 
                                     {
-                                       //console.log("type of " , typeof(this.state.users))
-                                       console.log(Object.values(this.state.users))
+                                        this.state.users.map(
+                                            trips =>
+                                                <tr key={trips.tripId}>
+                                                    <td>{trips.tripId}</td>     
+                                                    <td>{trips.pickupOfficeLocation}</td>
+                                                    <td>{trips.returnOfficeLocation}</td>
+                                                    <td>{trips.startDate}</td>
+                                                    <td>{trips.endDate}</td>    
+                                                    <td>{trips.agency.name}</td>
+                                                    <td>{trips.user.name}</td>
+                                                    <td><button className="btn btn-warning" onClick={this.onSubmit}>Delete</button></td>           
+                                                </tr>
+                                        )
                                     }
-                                <tbody>
                                    
                                 </tbody>
                             </table>

@@ -69,11 +69,11 @@ class AuthenticationDataService{
         return users
     }
     getAllOfficers(){
-        let users = axios.get(`http://localhost:8085/api/v1/agency/offcie`)
+        let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllOffices`)
         return users
     }
     getAllTrips(){
-        let users = axios.get(`http://localhost:8085/api/v1/admin/viewAllTrips`)
+        let users = axios.get(`http://localhost:8085/api/v1/user/user_see_all_trips`)
         return users
     }
     getAllVehicles(){
