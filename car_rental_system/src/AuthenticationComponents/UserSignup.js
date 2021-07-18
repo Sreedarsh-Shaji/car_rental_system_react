@@ -30,7 +30,7 @@ class UserSignup extends Component {
 
    
 
-    onSubmit(values) {
+    onSubmit() {
 
         const { history } = this.props;
         
@@ -44,7 +44,7 @@ class UserSignup extends Component {
                 name : this.state.name,
                 password : this.state.password,
                 phoneNumber: this.state.phoneNumber,
-                status : null,
+                status : "true",
                 userId : 0
               
         }

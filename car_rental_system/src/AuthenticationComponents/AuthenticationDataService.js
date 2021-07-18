@@ -48,6 +48,13 @@ class AuthenticationDataService{
         return ret;
     }
 
+    tripAdd(data){
+
+        console.log(data);
+        let ret = axios.post(`http://localhost:8085/api/v1/user/addtrip`,data);
+        return ret;
+    }
+
     agencyLogin(username,password){
         let ret = axios.get(`http://localhost:8085/api/v1/agency/agencyLogin/${username}/${password}`);
         return ret;
@@ -99,7 +106,7 @@ class AuthenticationDataService{
         return users
     }
     deleteUser(id){
-        let users = axios.delete(`http://localhost:8085/api/v1/trips/delete/${id}`)
+        let users = axios.delete(`http://localhost:8085/api/v1/admin/deleteUser/${id}`)
         return users
     }
     
@@ -112,7 +119,11 @@ class AuthenticationDataService{
         let users = axios.get(`http://localhost:8085/api/v1/trips/see-office-from-agency/${agencyName}`)
         return users
     }
-    
+        
+    getVehicleBasedOnOffice(office){
+        let v = axios.get(`http://localhost:8085/api/v1/user/user_see_vehicle_by_location/1`)
+        return v
+    }
 }
 
 export default new AuthenticationDataService();

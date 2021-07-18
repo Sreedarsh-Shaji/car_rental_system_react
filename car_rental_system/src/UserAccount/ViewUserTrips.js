@@ -15,9 +15,11 @@ class ViewUserTrips extends Component {
             offices: [],
             filteredoffices: [],
             agencies:[],
+            vehicles:[],
             pickup:'',
         }
         this.openModal = this.openModal.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
         this.deleteTrip = this.deleteTrip.bind(this);
         this.getAgencyBasedOnOfficeLocation = this.getAgencyBasedOnOfficeLocation.bind(this);
         this.handleChange =  this.handleChange.bind(this);
@@ -25,6 +27,47 @@ class ViewUserTrips extends Component {
     openModal = () => this.setState({ isOpen: true });
     closeModal = () => this.setState({ isOpen: false });
 
+
+    onSubmit(values) {
+
+        const { history } = this.props;
+        
+
+        let requestBody ={
+                active: true,
+                agency: {name: this.state.agency},
+                creationDateTime : "2021-07-18T05:18:13.514Z",
+                endDate : this.state.endDate,
+                pickupOfficeLocation : this.state.pickup,
+                rating : 4,
+                returnOfficeLocation : this.state.dropoff,
+                review : null,
+                startDate: this.state.startDate,
+                tripId: "",
+                user: {name: AuthenticationDataService.userLogin()},
+                vehicle: {
+                carName : this.state.vehicle}
+              }
+
+        AuthenticationDataService.tripAdd(requestBody)
+            .then((response) => { 
+                if(response.data == null)
+                {
+                    alert("Invalid credentials");
+                    this.setState({message:"Invalid credentials"})
+                } 
+                else{  
+                    alert("Added data successfully");
+                    this.setState({message:"Valid credentials"})
+                    //history.push('/Agency/Home');
+                }
+                console.log(response.data) })
+        .catch(  
+        err=>{
+            console.log(err)
+            this.setState({error:"Invalid credentials"})
+        } )
+    }
     deleteTrip(id) {
         AuthenticationDataService.deleteTrip(id).
             then(response => {
@@ -47,10 +90,12 @@ class ViewUserTrips extends Component {
         if( event.target.name == "pickup")
         {
             this.getAgencyBasedOnOfficeLocation(event.target.value)
+            this.getVehicleBasedOnOffice(event.target.value)
         }
         else if(event.target.name == "agency"){
             this.getOfficesBasedOnAgency(event.target.value)
         }
+        
     }
 
     getAgencyBasedOnOfficeLocation(loc)
@@ -64,10 +109,20 @@ class ViewUserTrips extends Component {
 
     getOfficesBasedOnAgency(loc)
     {
-        alert(loc)
+        
         AuthenticationDataService.getOfficeBasedOnAgencyName(loc).
             then(response => {
                 this.setState({ filteredoffices: response.data })
+                console.log(response.data)
+            })
+    }
+
+    getVehicleBasedOnOffice(vehicle)
+    {
+        
+        AuthenticationDataService.getVehicleBasedOnOffice(vehicle).
+            then(response => {
+                this.setState({ vehicles: response.data })
                 console.log(response.data)
             })
     }
@@ -97,7 +152,7 @@ class ViewUserTrips extends Component {
                     <div className="row">
                         <div className="col">
                             <br />
-                            <h3 style={{ textAlign: "center" }}>All Offices</h3>
+                            <h3 style={{ textAlign: "center" }}>View Trips</h3>
 
                         </div>
                     </div>
@@ -108,7 +163,7 @@ class ViewUserTrips extends Component {
 
 
                             <Button variant="primary" onClick={this.openModal}>
-                                ADD Office
+                                ADD Trips
                             </Button>
                         </div>
                     </div>
@@ -128,6 +183,7 @@ class ViewUserTrips extends Component {
                                         <th scope="col">End Date</th>
                                         <th scope="col">Agency</th>
                                         <th scope="col">User</th>
+                                        <th scope="col">Vehicle</th>
                                         <th scope="col">Delete Trips</th>
                                     </tr>
                                 </thead>
@@ -145,6 +201,7 @@ class ViewUserTrips extends Component {
                                                         <td>{trips.endDate}</td>
                                                         <td>{trips.agency.name}</td>
                                                         <td>{trips.user.name}</td>
+                                                        <td>{trips.vehicle.carName}</td>
                                                         <td><button className="btn btn-warning" onClick={() => this.deleteTrip(trips.tripId)}>Delete</button></td>
                                                     </tr> :
                                                     ""
@@ -160,7 +217,7 @@ class ViewUserTrips extends Component {
                     </div>
                     <Modal show={this.state.isOpen}>
                         <Modal.Header closeButton onClick={this.closeModal}>
-                            <Modal.Title>{this.state.modelAction == "Add" ? "Update the office" : "Add an office"}</Modal.Title>
+                            <Modal.Title>Add Trip</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
 
@@ -206,6 +263,18 @@ class ViewUserTrips extends Component {
                                         this.state.filteredoffices.map(
                                             ofc =>
                                                 <option value={ofc.officeAddress}>{ofc.officeAddress}</option>
+                                        )
+                                    }
+                                    </select>  
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Vehicle</label>
+                                    <select type="text" name="vehicle" class="form-control" id="location" onChange={this.handleChange} >
+                                    {
+                                        this.state.vehicles.map(
+                                            ofc =>
+                                                <option value={ofc.vehicleId}>{ofc.carName}</option>
                                         )
                                     }
                                     </select>  
