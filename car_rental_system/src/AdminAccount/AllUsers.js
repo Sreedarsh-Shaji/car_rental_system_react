@@ -106,7 +106,7 @@ class AllUsers extends Component {
                                             
 
                                              {/*<td>{user.done.toString()}</td>*/}
-                                            <td><button className="btn btn-warning" onClick={()=>this.deleteUser(user.userId)}>Delete</button></td>
+                                          
                                             
                                         </tr>
                                 )

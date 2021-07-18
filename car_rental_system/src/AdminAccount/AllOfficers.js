@@ -54,7 +54,7 @@ class AllOfficers extends Component {
                                             <td>{officers.officeAddress}</td>
                                             <td>{officers.officePhone}</td>
                                             <td>{officers.officeAlternatePhone}</td>
-                                            <td><button className="btn btn-warning">Delete</button></td>     
+                                                 
                                         </tr>
                                 )
                             }

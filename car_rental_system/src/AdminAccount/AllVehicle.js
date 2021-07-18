@@ -72,7 +72,7 @@ class AllVehicle extends Component {
                                             <td>{vehicle.fuelType}</td>
                                             <td>{vehicle.kmsOperated}</td>
                                             <td>{vehicle.hourlyRate}</td>
-                                            <td><button className="btn btn-warning"  onClick={() => this.deleteVehicle(vehicle.vehicleId)}>Delete</button></td>
+                                           
                                         </tr>
                                 )
                             }
