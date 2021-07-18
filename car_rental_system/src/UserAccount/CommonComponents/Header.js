@@ -13,7 +13,7 @@ class Header extends Component {
                    <div><a href="#" className="navbar-brand">Dashboard</a></div>
                    <ul className="navbar-nav">
                        {isUserLogin && <li><Link to="/User/Home"  className="nav-link">Home</Link></li>}
-                       {isUserLogin && <li><Link to="/User/Office"  className="nav-link">Officers</Link></li>}
+                       {isUserLogin && <li><Link to="/User/Office"  className="nav-link">Offices</Link></li>}
                        {isUserLogin && <li><Link to="/User/Trips"  className="nav-link">View Trips</Link></li>}
                    </ul>
                    <ul  className="navbar-nav navbar-collapse justify-content-end">

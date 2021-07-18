@@ -31,7 +31,7 @@ class ViewOffice extends Component {
                 
                 <div className="container">
                     <br/>
-                <h1>Officers</h1>
+                <h1>Offices</h1>
                 <br/>
                     <table class="table">
                         <thead class="table-dark">

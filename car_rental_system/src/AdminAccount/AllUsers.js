@@ -102,12 +102,6 @@ class AllUsers extends Component {
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
                                             <td>{user.licenseNumber}</td>
-                                            
-                                            
-
-                                             {/*<td>{user.done.toString()}</td>*/}
-                                          
-                                            
                                         </tr>
                                 )
                             }

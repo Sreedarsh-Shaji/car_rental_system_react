@@ -137,9 +137,6 @@ class ViewVehicle extends Component {
                                                     <td>{vehicle.fuelType}</td>
                                                     <td>{vehicle.hourlyRate}</td>
                                                     <td>{vehicle.registerNumber}</td>
-                                                    
-                                                    {/*<td>{user.done.toString()}</td>*/}
-                                                    <td><button className="btn btn-warning">Delete</button></td>
                                                   
                                                 </tr>
                                         )

@@ -31,7 +31,7 @@ class AllOfficers extends Component {
                 
                 <div className="container">
                     <br/>
-                <h1>Officers</h1>
+                <h1>Office</h1>
                 <br/>
                     <table class="table">
                         <thead class="table-dark">

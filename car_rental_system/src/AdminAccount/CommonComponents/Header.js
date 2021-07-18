@@ -16,7 +16,7 @@ class Header extends Component {
                         {isAdminLogin && <li><Link to="/Admin/All-users"  className="nav-link">Users</Link></li>}
                         {isAdminLogin && <li><Link to="/Admin/All-agencies"  className="nav-link">Agencies</Link></li>}
                         {isAdminLogin && <li><Link to="/Admin/All-trips"  className="nav-link">Trips</Link></li>}
-                        {isAdminLogin && <li><Link to="/Admin/All-officers"  className="nav-link">Officers</Link></li>}
+                        {isAdminLogin && <li><Link to="/Admin/All-officers"  className="nav-link">Office</Link></li>}
                         {isAdminLogin && <li><Link to="/Admin/All-Vehicles"  className="nav-link">Vehicles</Link></li>}
                    </ul>
    
